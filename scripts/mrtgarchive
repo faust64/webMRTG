@@ -6,7 +6,7 @@ BASE_URL="http://mrtg.example.com/cgi-bin/14all.cgi?log="
 cd $MRTG_ROOT
 for node in `find . -name '*.cfg' | sed 's|\./[^/]*/\([^.]*\).cfg|\1|'`
 do
-    for probe in `grep '^Target\[' $node/$node.cfg | sed 's|^Target.\([^_]*_[0-9]*\).*|\1|'`
+    for probe in `grep '^Target\[' $node/$node.cfg | grep -E '[0-9]\.[0-9]+\.[0-9]+\.[0-9]+_[0-9]+' | sed 's|^Target.\([^_]*_[0-9]*\).*|\1|'`
     do
 	basefile="$BASE_URL$probe&cfg=$node.cfg&png="
 	sfx=
@@ -32,8 +32,10 @@ do
 		    ;;
 	    esac
 	    if $check; then
-		out=$MRTG_ROOT/vortex/$probe-`date +%y%m%d`-$period.png
+		outdir=$MRTG_ROOT/vortex/$probe/`date +%y`
+		out=$outdir/$probe-`date +%y%m%d`-$period.png
 		if ! test -s $out; then
+		    test -d $outdir || mkdir -p $outdir
 		    wget "$basefile$period$sfx" -O $out
 		fi
 	    fi

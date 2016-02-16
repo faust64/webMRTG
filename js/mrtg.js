@@ -197,9 +197,10 @@ function renderweathervortex(reqyear, reqmonth, reqday, reqhour, reqmin)
     var hour  = displaydate(reqhour);
     var min   = displaydate(reqmin);
     var str = '<td><div id="vortexheader">' + year + '/' + month + '/' + day
-	+ ' ' + hour + ':' + min + '<a href="/vortex/weathermap-' + year + month
-	+ day + hour + min + '.png" data-lightbox="weathervortex"><br>'
-	+ '<img src="/vortex/weathermap-' + year + month + day + hour + min
+	+ ' ' + hour + ':' + min + '<a href="/vortex/weathermap/' + year
+	+ '/weathermap-' + year + month + day + hour + min
+	+ '.png" data-lightbox="weathervortex"><br><img src="/vortex/weathermap'
+	+ '/' + year + '/weathermap-' + year + month + day + hour + min
 	+ '.png" onError="fallbackimage(this)" width="80%"></a></div></td>';
 
     return str;
@@ -211,10 +212,11 @@ function renderhostvortex(ip, itf, graphs, reqyear, reqmonth, reqday, interval)
     var month = displaydate(reqmonth);
     var day   = displaydate(reqday);
     var str   = '<td><li>' + ip + '_' + graphs[itf] + ' ' + year + '/' + month
-	+ '/' + day + '</li><a href="/vortex/' + ip + '_' + graphs[itf] + '-'
-	+ year + month + day + interval + '.png" data-lightbox="hostvortex">'
-	+ '<img src="/vortex/' + ip + '_' + graphs[itf] + '-' + year + month
-	+ day + interval + '.png" onError="fallbackimage(this)"></td>';
+	+ '/' + day + '</li><a href="/vortex/' + ip + '/' + year + '/' + ip
+	+ '_' + graphs[itf] + '-' + year + month + day + interval
+	+ '.png" data-lightbox="hostvortex"><img src="/vortex/' + ip + '/'
+	+ year + '/' + ip + '_' + graphs[itf] + '-' + year + month + day
+	+ interval + '.png" onError="fallbackimage(this)"></td>';
 
     return str;
 }
