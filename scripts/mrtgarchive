@@ -32,7 +32,7 @@ do
 		    ;;
 	    esac
 	    if $check; then
-		outdir=$MRTG_ROOT/vortex/$probe/`date +%y`
+		outdir=$MRTG_ROOT/vortex/`echo $probe | cut -d_ -f1`/`date +%y`
 		out=$outdir/$probe-`date +%y%m%d`-$period.png
 		if ! test -s $out; then
 		    test -d $outdir || mkdir -p $outdir
