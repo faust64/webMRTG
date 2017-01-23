@@ -16,4 +16,4 @@ Content
 Installation Instructions
 -------------------------
 
-For detailed installation instructions, check out [https://gitlab.unetresgrossebite.com/DevOps/puppet/tree/master/modules/mrtg/](my MRTG puppet module)
+For detailed installation instructions, check out [my MRTG puppet module](https://gitlab.unetresgrossebite.com/DevOps/puppet/tree/master/modules/mrtg/)
